@@ -1,0 +1,3 @@
+/** @startingPoint section="Charts" subtitle="Sortable ranked table with inline bars and row selection" viewport="700x420" */
+export interface TableColumn { key: string; label: string; /** numeric formatter; presence right-aligns the column */ format?: (v:any)=>string; align?: 'left'|'right'; /** draw an inline bar behind the value */ bar?: boolean; width?: number|string; render?: (row:any)=>React.ReactNode; }
+export interface DataTableProps { columns: TableColumn[]; rows: {id:string; [k:string]:any}[]; selectedId?: string; onSelect?: (id:string)=>void; /** rows before "Show more" — 10 by default */ pageSize?: number; sortKey?: string; sortDir?: 'asc'|'desc'; onSort?: (key:string)=>void; style?: React.CSSProperties; }

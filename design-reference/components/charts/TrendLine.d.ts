@@ -1,0 +1,3 @@
+/** @startingPoint section="Charts" subtitle="Time-series with crosshair hover and compare series" viewport="700x300" */
+export interface TrendSeries { id: string; label: string; data: (number|null)[]; color?: string; /** previous period / target — drawn dashed grey */ dashed?: boolean; }
+export interface TrendLineProps { series: TrendSeries[]; /** x-axis labels, one per data point */ labels: string[]; /** value formatter for axis + tooltip (fmtINR, fmtX, fmtPct…) */ format?: (v:number)=>string; height?: number; yTicks?: number; style?: React.CSSProperties; }

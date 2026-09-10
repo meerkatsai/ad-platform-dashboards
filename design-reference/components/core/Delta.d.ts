@@ -1,0 +1,1 @@
+export interface DeltaProps { /** percentage change, e.g. 12.4 */ value: number|null; /** true when a decrease is good (ACOS, CPC, CPI, cost per conversion) */ invert?: boolean; /** 'plain' suppresses good/bad colour — use when many deltas sit together */ tone?: 'status'|'plain'; /** e.g. "vs prev" or "vs target" */ suffix?: string; style?: React.CSSProperties; }

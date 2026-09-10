@@ -1,0 +1,1 @@
+export interface SegmentedProps { value: string; options: {value:string; label:string}[]; onChange?: (v:string)=>void; size?: 'sm'|'md'; style?: React.CSSProperties; }

@@ -1,0 +1,1 @@
+export interface IconProps { /** Lucide icon name, e.g. "pin", "download", "chevron-down" */ name: string; size?: number; style?: React.CSSProperties; }

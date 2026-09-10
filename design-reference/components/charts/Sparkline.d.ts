@@ -1,0 +1,1 @@
+export interface SparklineProps { data: number[]; /** previous-period series drawn dashed */ compare?: number[]; width?: number; height?: number; color?: string; }

@@ -1,0 +1,2 @@
+export interface BarGroup { label: string; values: number[] }
+export interface BarsVerticalProps { groups: BarGroup[]; /** one or two series (e.g. ["Android","iOS"]) */ seriesLabels?: string[]; format?: (v:number)=>string; height?: number; style?: React.CSSProperties; }

@@ -1,0 +1,24 @@
+<!-- @dsCard group="Components" viewport="700x1200" name="Charts" subtitle="TrendLine, BarsVertical, BarsHorizontal, Heatmap, DataTable, PeriodTable, Sparkline" -->
+<!doctype html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script><script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><script src="../../lib/loader.js"></script>
+<style>body{background:var(--surface-card);padding:16px 20px}.lbl{font:500 11px var(--font-mono);color:var(--ink-400);text-transform:uppercase;letter-spacing:.06em;margin:0 0 8px}.sec{margin-bottom:24px}</style></head><body><div id="root"></div>
+<script src="../../lib/format.js"></script>
+<script>(async()=>{
+await loadJsx(['../core/Icon.jsx','Sparkline.jsx','TrendLine.jsx','BarsVertical.jsx','BarsHorizontal.jsx','Heatmap.jsx','DataTable.jsx','PeriodTable.jsx']);
+const {PeriodTable,TrendLine,BarsVertical,BarsHorizontal,Heatmap,DataTable,Sparkline}=window.MK; const h=React.createElement;
+const days=Array.from({length:30},(_,i)=>(i+1)+' Aug'); const spend=days.map((_,i)=>62000+Math.sin(i/4)*9000+i*900); const prev=spend.map((v,i)=>v*0.9-Math.cos(i/3)*4000);
+const camps=['Diwali Sale · SP','Brand Defense · SB','Category · SP','Retarget · SD','Kitchen Bestsellers','Auto · Broad','New Launch · Mixer','Competitor · SP','Video · Cookware','Festive Gifting'];
+const items=camps.map((c,i)=>({id:'c'+i,label:c,value:Math.round(420000/(1+i*0.35)),sub:(4.8-i*0.3).toFixed(1)+'× ROAS'}));
+const rows=camps.map((c,i)=>({id:'c'+i,name:c,spend:Math.round(180000/(1+i*.3)),sales:Math.round(720000/(1+i*.4)),roas:4.8-i*.3,acos:20+i*1.6,ctr:.42-i*.02}));
+function App(){ const [sel,setSel]=React.useState('c1');
+ return h('div',null,
+  h('div',{className:'sec'},h('p',{className:'lbl'},'TrendLine · hover for crosshair + single-series tooltip'),h(TrendLine,{labels:days,format:F.fmtINR,height:200,series:[{id:'s',label:'Spend',data:spend},{id:'p',label:'Spend · prev period',data:prev,dashed:true}]})),
+  h('div',{className:'sec'},h('p',{className:'lbl'},'BarsVertical · two series'),h(BarsVertical,{height:180,format:F.fmtX,seriesLabels:['Android','iOS'],groups:[{label:'Diwali Sale',values:[3.9,4.6]},{label:'Brand',values:[6.1,5.4]},{label:'Retarget',values:[2.2,2.9]},{label:'Launch',values:[1.8,2.4]}]})),
+  h('div',{className:'sec'},h('p',{className:'lbl'},'BarsHorizontal · ranked, click to select'),h(BarsHorizontal,{items:items.slice(0,6),format:F.fmtINR,selectedId:sel,onSelect:setSel})),
+  h('div',{className:'sec'},h('p',{className:'lbl'},'Heatmap · Campaign × Placement (ROAS)'),h(Heatmap,{rows:camps.slice(0,5),cols:['Top of search','Rest of search','Product pages'],format:F.fmtX,values:[[5.2,3.1,2.4],[6.8,4.0,3.3],[2.9,2.2,1.7],[null,1.9,3.8],[4.1,2.6,2.0]]})),
+  h('div',{className:'sec'},h('p',{className:'lbl'},'DataTable · sortable, inline bar, selected row'),h(DataTable,{pageSize:5,rows,selectedId:sel,onSelect:setSel,sortKey:'sales',columns:[{key:'name',label:'Campaign',width:'32%'},{key:'spend',label:'Spend',format:F.fmtINR},{key:'sales',label:'Sales',format:F.fmtINR,bar:true,width:'24%'},{key:'roas',label:'ROAS',format:F.fmtX},{key:'acos',label:'ACOS',format:F.fmtPct}]})),
+  h('div',{className:'sec'},h('p',{className:'lbl'},'PeriodTable · week on week, value + Δ per cell'),h(PeriodTable,{pageSize:5,periods:['W31','W32','W33','W34','W35'],format:F.fmtINR,rows:camps.slice(0,5).map((c,i)=>({id:'w'+i,label:c,values:[5,4,3,2,1].map((k,j)=>Math.round(90000/(1+i*.3)*(1+Math.sin(i+j)*.12)))}))})),
+  h('div',{className:'sec'},h('p',{className:'lbl'},'Sparkline'),h('div',{style:{display:'flex',gap:24}},h(Sparkline,{data:spend.slice(0,14)}),h(Sparkline,{data:spend.slice(0,14),compare:prev.slice(0,14)})))
+ ); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+})();</script></body></html>

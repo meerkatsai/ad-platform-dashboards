@@ -1,0 +1,11 @@
+<!-- @dsCard group="Dashboard" viewport="1440x900" name="Ads dashboard" subtitle="Platform dropdown · pinned full-width cards · Campaign Performance" -->
+<!-- @startingPoint section="Dashboards" subtitle="Ad platform dashboard shell with pinned report cards" viewport="1440x900" -->
+<!doctype html><html><head><meta charset="utf-8"><title>Ads dashboard</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script><script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../lib/loader.js"></script><script src="../../lib/format.js"></script><script src="data.js"></script>
+</head><body><div id="root"></div>
+<script>(async()=>{
+ const c='../../components/';
+ await loadJsx([c+'core/Icon.jsx',c+'core/Button.jsx',c+'core/IconButton.jsx',c+'core/Select.jsx',c+'core/Segmented.jsx',c+'core/Toggle.jsx',c+'core/Delta.jsx',c+'core/DateRange.jsx',c+'charts/Sparkline.jsx',c+'charts/TrendLine.jsx',c+'charts/BarsVertical.jsx',c+'charts/BarsHorizontal.jsx',c+'charts/Heatmap.jsx',c+'charts/DataTable.jsx',c+'charts/PeriodTable.jsx',c+'cards/ReportCard.jsx',c+'cards/KpiStrip.jsx','TopBar.jsx','PlatformCards.jsx','App.jsx']);
+ ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(MK.App));
+})();</script></body></html>

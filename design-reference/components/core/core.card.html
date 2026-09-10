@@ -1,0 +1,17 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Core controls" subtitle="Button, IconButton, Select, Segmented, Toggle, DateRange, Delta" -->
+<!doctype html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script><script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><script src="../../lib/loader.js"></script>
+<style>body{background:var(--surface-card);padding:20px}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}.lbl{font:500 11px var(--font-mono);color:var(--ink-400);text-transform:uppercase;letter-spacing:.06em;width:90px}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+loadJsx(['Icon.jsx','Button.jsx','IconButton.jsx','Select.jsx','Segmented.jsx','Toggle.jsx','Delta.jsx','DateRange.jsx']).then(({Button,IconButton,Select,Segmented,Toggle,Delta,DateRange})=>{
+function App(){ const [p,setP]=React.useState('D'); const [c,setC]=React.useState(true); const [m,setM]=React.useState('roas'); const [pin,setPin]=React.useState(true);
+ return <div>
+  <div className="row"><span className="lbl">Button</span><Button variant="primary" icon="download">Export</Button><Button>Secondary</Button><Button variant="ghost">Ghost</Button><Button size="sm">Show more</Button><Button disabled>Disabled</Button></div>
+  <div className="row"><span className="lbl">IconButton</span><IconButton icon="pin" label="Pin" active={pin} onClick={()=>setPin(!pin)}/><IconButton icon="download" label="CSV"/><IconButton icon="grip-vertical" label="Drag"/></div>
+  <div className="row"><span className="lbl">Select</span><Select size="lg" icon="layers" value="all" options={[{value:'all',label:'All platforms'},{value:'amazon',label:'Amazon Ads'},{value:'flipkart',label:'Flipkart Ads'},{value:'google',label:'Google Ads'},{value:'meta',label:'Meta Ads'}]}/><Select size="sm" value={m} onChange={setM} options={[{value:'roas',label:'ROAS'},{value:'sales',label:'Sales'},{value:'spend',label:'Spend'}]}/></div>
+  <div className="row"><span className="lbl">Segmented</span><Segmented value={p} onChange={setP} options={[{value:'D',label:'D'},{value:'W',label:'W'},{value:'M',label:'M'}]}/><Segmented size="sm" value={p} onChange={setP} options={[{value:'D',label:'Day'},{value:'W',label:'Week'},{value:'M',label:'Month'}]}/><Toggle checked={c} onChange={setC} label="Compare"/></div>
+  <div className="row"><span className="lbl">DateRange</span><DateRange value="30d"/><DateRange value="7d" size="md"/></div>
+  <div className="row"><span className="lbl">Delta</span><Delta value={12.4} suffix="vs prev"/><Delta value={-3.1} invert suffix="vs target"/><Delta value={-8.2}/><Delta value={0}/><Delta value={5.5} tone="plain"/></div>
+ </div>; }
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>); });
+</script></body></html>

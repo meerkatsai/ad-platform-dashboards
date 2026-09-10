@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Design tokens — single source of truth. Tailwind theme colors resolve to
+   these variables (see tailwind.config.js); SVG chart code reads them directly.
+   Source: design_handoff_ads_dashboard/tokens/*.css
+--------------------------------------------------------------------------- */
+:root {
+  /* Surfaces */
+  --surface-page: #fafaf9;
+  --surface-card: #ffffff;
+  --surface-sunken: #f4f4f2;
+  --surface-tint: #fff7f2;
+
+  /* Ink */
+  --ink-900: #0b0b0c;
+  --ink-700: #2a2a2e;
+  --ink-500: #5c5c63;
+  --ink-400: #8a8a92;
+  --ink-300: #b4b4ba;
+
+  /* Rules */
+  --rule: #e4e4e7;
+  --rule-strong: #111113;
+  --rule-grid: #efefec;
+
+  /* Accent — brand ember. Never encodes data; primary button + pin state only. */
+  --accent: #ea580c;
+  --accent-hover: #c2410c;
+  --accent-soft: #fdba74;
+  --accent-tint: #fff7f2;
+
+  /* Status — good/bad only, used sparingly (deltas) */
+  --good: #15803d;
+  --good-bg: #ecfdf3;
+  --bad: #b91c1c;
+  --bad-bg: #fef2f2;
+
+  /* Series — standard RGBY categorical palette. No orange, no ember in data. */
+  --series-1: #4285f4;
+  --series-2: #ea4335;
+  --series-3: #fbbc04;
+  --series-4: #34a853;
+  --series-5: #7e57c2;
+  --series-6: #00acc1;
+  --series-7: #e91e63;
+  --series-8: #8d6e63;
+  --series-compare: #8a8a92;
+  --series-dim: #d4d4d7;
+
+  /* Bars */
+  --bar-neutral: #d4d4d7;
+  --bar-active: #4285f4;
+  --bar-track: #f4f4f2;
+
+  /* Heatmap — sequential blues, 5 steps, value text always shown */
+  --heat-0: #ffffff;
+  --heat-1: #e8f0fe;
+  --heat-2: #aecbfa;
+  --heat-3: #669df6;
+  --heat-4: #1a73e8;
+  --heat-5: #174ea6;
+  --heat-text-dark: #0b0b0c;
+  --heat-text-light: #ffffff;
+
+  --select-tint: #e8f0fe;
+
+  /* Chart chrome */
+  --chart-grid: #efefec;
+  --chart-axis: #8a8a92;
+  --chart-crosshair: #0b0b0c;
+}
+
+@layer base {
+  html,
+  body {
+    @apply m-0 bg-page font-ui text-body text-ink-700 antialiased;
+  }
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  /* Tabular figures on every number */
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1, 'ss01' 1;
+  }
+  /* 3px ember 25% focus ring */
+  .focus-ember:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.25);
+  }
+}

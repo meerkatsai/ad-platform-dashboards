@@ -1,0 +1,2 @@
+export interface RankedItem { id: string; label: string; value: number; /** small secondary text under the value */ sub?: string }
+export interface BarsHorizontalProps { items: RankedItem[]; format?: (v:number)=>string; selectedId?: string; onSelect?: (id:string)=>void; /** fixed scale max; defaults to largest value */ max?: number; rowH?: number; labelW?: number; style?: React.CSSProperties; }

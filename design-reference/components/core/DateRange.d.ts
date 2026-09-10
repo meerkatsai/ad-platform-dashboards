@@ -1,0 +1,1 @@
+export interface DateRangeProps { /** preset key: 7d | 30d | mtd | 90d | custom */ value?: string; onChange?: (v:string)=>void; size?: 'sm'|'md'; style?: React.CSSProperties; }

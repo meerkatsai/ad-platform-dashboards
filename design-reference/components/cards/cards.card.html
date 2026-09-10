@@ -1,0 +1,18 @@
+<!-- @dsCard group="Components" viewport="700x520" name="Cards" subtitle="ReportCard shell + KpiStrip" -->
+<!doctype html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script><script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><script src="../../lib/loader.js"></script>
+<style>body{background:var(--surface-page);padding:16px 20px}.lbl{font:500 11px var(--font-mono);color:var(--ink-400);text-transform:uppercase;letter-spacing:.06em;margin:0 0 8px}.sec{margin-bottom:24px}</style></head><body><div id="root"></div>
+<script src="../../lib/format.js"></script>
+<script>(async()=>{
+await loadJsx(['../core/Icon.jsx','../core/IconButton.jsx','../core/Select.jsx','../core/Segmented.jsx','../core/Toggle.jsx','../core/Delta.jsx','../charts/Sparkline.jsx','../charts/TrendLine.jsx','ReportCard.jsx','KpiStrip.jsx']);
+const {ReportCard,KpiStrip,Select,Segmented,Toggle,TrendLine}=window.MK; const h=React.createElement;
+const days=Array.from({length:14},(_,i)=>(i+1)+' Aug'); const sp=days.map((_,i)=>60000+Math.sin(i/2)*8000+i*1200);
+function App(){ const [pin,setPin]=React.useState(true); const [k,setK]=React.useState('spend'); const [p,setP]=React.useState('D'); const [c,setC]=React.useState(true);
+ return h('div',{style:{display:'flex',flexDirection:'column',gap:16}},
+  h(ReportCard,{title:'Account Performance',question:'Is spend translating into sales?',synced:'2m ago',pinned:pin,onPin:()=>setPin(!pin),onDownload:()=>{},controls:h(React.Fragment,null,h(Segmented,{size:'sm',value:p,onChange:setP,options:[{value:'D',label:'D'},{value:'W',label:'W'},{value:'M',label:'M'}]}),h(Toggle,{checked:c,onChange:setC,label:'Compare'}))},
+    h(KpiStrip,{selectedKey:k,onSelect:setK,items:[{key:'spend',label:'Spend',value:F.fmtINR(1240000),delta:8.2,target:-2.1,spark:sp,compare:sp.map(v=>v*.9)},{key:'sales',label:'Sales',value:F.fmtINR(5860000),delta:14.6,target:3.4,spark:sp.map(v=>v*4.7)},{key:'roas',label:'ROAS',value:F.fmtX(4.7),delta:5.9,target:1.2,spark:sp.map((v,i)=>4+Math.cos(i)*.4)},{key:'acos',label:'ACOS',value:F.fmtPct(21.2),delta:-5.6,target:-1.0,invert:true,spark:sp.map((v,i)=>22-Math.cos(i)*1.5)}]}),
+    h(TrendLine,{labels:days,format:F.fmtINR,height:160,series:[{id:'a',label:'Spend',data:sp},{id:'b',label:'Spend · prev period',data:sp.map(v=>v*.9),dashed:true}]})),
+  h(ReportCard,{title:'Unpinned card',question:'Header only — pin-off state',synced:'just now',pinned:false,onPin:()=>{},draggable:false,controls:h(Select,{size:'sm',value:'roas',options:[{value:'roas',label:'ROAS'},{value:'sales',label:'Sales'}]})},h('div',{style:{height:40,border:'1px dashed var(--rule)',borderRadius:4}})));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+})();</script></body></html>

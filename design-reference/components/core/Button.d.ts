@@ -1,0 +1,2 @@
+/** @startingPoint section="Controls" subtitle="Primary / secondary / ghost, two sizes" viewport="700x160" */
+export interface ButtonProps { variant?: 'primary'|'secondary'|'ghost'; size?: 'md'|'sm'; /** Lucide icon name shown before the label */ icon?: string; disabled?: boolean; children?: React.ReactNode; onClick?: () => void; style?: React.CSSProperties; }

@@ -1,0 +1,2 @@
+/** @startingPoint section="Cards" subtitle="Pinnable full-width report card shell" viewport="700x360" */
+export interface ReportCardProps { title: string; /** the business question the report answers, from the catalog */ question?: string; /** Select / Segmented / Toggle controls rendered in the header */ controls?: React.ReactNode; /** e.g. "2m ago" */ synced?: string; pinned?: boolean; onPin?: () => void; onDownload?: () => void; draggable?: boolean; footer?: React.ReactNode; children?: React.ReactNode; style?: React.CSSProperties; }

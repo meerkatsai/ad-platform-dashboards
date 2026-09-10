@@ -1,0 +1,1 @@
+export interface IconButtonProps { icon: string; /** accessible label + tooltip */ label: string; /** ember colour when on (pinned) */ active?: boolean; size?: number; onClick?: () => void; style?: React.CSSProperties; }

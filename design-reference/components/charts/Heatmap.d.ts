@@ -1,0 +1,1 @@
+export interface HeatmapProps { rows: string[]; cols: string[]; /** values[rowIndex][colIndex]; null = not available */ values: (number|null)[][]; format?: (v:number)=>string; /** true when lower is better (ACOS, CPC, CPI) so the dark end means good */ invert?: boolean; rowLabelW?: number; cellH?: number; style?: React.CSSProperties; }

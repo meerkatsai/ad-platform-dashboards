@@ -1,0 +1,3 @@
+/** @startingPoint section="Charts" subtitle="Day / week / month over period table with per-cell deltas" viewport="700x420" */
+export interface PeriodRow { id: string; label: string; /** one value per period, oldest first */ values: number[] }
+export interface PeriodTableProps { rows: PeriodRow[]; /** column headers: dates, ISO weeks or months, oldest first */ periods: string[]; format?: (v:number)=>string; /** lower is better (ACOS, CPC, CPI) */ invert?: boolean; /** show Δ vs previous column under each value (default true) */ showDelta?: boolean; labelW?: number; cellW?: number; pageSize?: number; style?: React.CSSProperties; }

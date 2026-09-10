@@ -1,0 +1,2 @@
+export interface SelectOption { value: string; label: string }
+export interface SelectProps { value: string; options: SelectOption[]; onChange?: (value: string) => void; /** sm = in-card metric selector; lg = top-bar platform switcher */ size?: 'sm'|'md'|'lg'; icon?: string; style?: React.CSSProperties; }

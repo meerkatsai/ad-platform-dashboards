@@ -1,0 +1,3 @@
+/** @startingPoint section="Cards" subtitle="Grouped headline KPIs with sparklines and context" viewport="700x140" */
+export interface KpiItem { key: string; label: string; /** pre-formatted display value, e.g. "₹12.4 L" */ value: string; /** % change vs previous period */ delta?: number|null; /** % vs target / plan */ target?: number|null; /** lower is better */ invert?: boolean; spark?: number[]; compare?: number[]; }
+export interface KpiStripProps { items: KpiItem[]; selectedKey?: string; onSelect?: (key:string)=>void; columns?: number; style?: React.CSSProperties; }
