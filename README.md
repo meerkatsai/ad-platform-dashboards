@@ -22,6 +22,7 @@ npm run build
 | `src/components/charts/` | TrendLine, Sparkline, BarsVertical, BarsHorizontal, Heatmap, DataTable, PeriodTable (DoD/WoW/MoM) |
 | `src/components/dashboard/` | TopBar + every card type per platform and the "All platforms" cards |
 | `design-reference/` | The original design-handoff package (tokens, guidelines HTML, component prompts, catalog) — the binding spec |
+| `schema/` | JSON Schemas (draft 2020-12) for the system's data contracts: catalog, card + per-representation payloads, dashboard state, design tokens as JSON, plus valid examples — see `schema/README.md` |
 
 ## Product decisions baked in
 

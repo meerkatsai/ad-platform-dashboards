@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meerkats.ai/schemas/ad-dashboards/tokens.schema.json",
+  "title": "Design tokens",
+  "description": "Validates schema/tokens.json — the design-token values as portable JSON. These mirror the CSS custom properties in src/index.css (that file remains the runtime source of truth; this JSON exists for programmatic consumption, e.g. mapping into another app's Tailwind config). Binding rules: the accent ember never encodes data (primary button + pin state only); data series use the RGBY categorical palette in the given order; status colours appear only on deltas; heatmaps use the 5-step sequential blue ramp with values printed.",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" },
+    "color": {
+      "type": "object",
+      "properties": {
+        "surface": { "$ref": "#/$defs/hexMap" },
+        "ink": { "$ref": "#/$defs/hexMap" },
+        "rule": { "$ref": "#/$defs/hexMap" },
+        "accent": { "$ref": "#/$defs/hexMap" },
+        "status": { "$ref": "#/$defs/hexMap" },
+        "series": { "$ref": "#/$defs/hexMap" },
+        "bar": { "$ref": "#/$defs/hexMap" },
+        "heat": { "$ref": "#/$defs/hexMap" },
+        "selectTint": { "$ref": "#/$defs/hex" },
+        "chart": { "$ref": "#/$defs/hexMap" }
+      },
+      "required": ["surface", "ink", "rule", "accent", "status", "series", "bar", "heat", "selectTint", "chart"],
+      "additionalProperties": false
+    },
+    "typography": {
+      "type": "object",
+      "properties": {
+        "family": { "type": "object", "additionalProperties": { "type": "string" } },
+        "size": { "type": "object", "additionalProperties": { "type": "number" } },
+        "weight": { "type": "object", "additionalProperties": { "type": "number" } },
+        "lineHeight": { "type": "object", "additionalProperties": { "type": "number" } },
+        "trackingCaps": { "type": "string" },
+        "tabularNumbers": { "type": "boolean" }
+      },
+      "required": ["family", "size", "weight"],
+      "additionalProperties": false
+    },
+    "shape": { "type": "object", "additionalProperties": { "type": "number" } },
+    "layout": { "type": "object", "additionalProperties": { "type": "number" } },
+    "chart": { "type": "object", "additionalProperties": { "type": "number" } },
+    "motion": {
+      "type": "object",
+      "properties": {
+        "durationFastMs": { "type": "number" },
+        "durationMs": { "type": "number" },
+        "ease": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "elevation": { "type": "object", "additionalProperties": { "type": "string" } },
+    "focusRing": { "type": "string" }
+  },
+  "required": ["color", "typography", "shape", "layout", "chart", "motion", "elevation"],
+  "additionalProperties": false,
+  "$defs": {
+    "hex": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "hexMap": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/hex" },
+      "minProperties": 1
+    }
+  }
+}

@@ -1,0 +1,139 @@
+[
+  {
+    "id": "kpi",
+    "platform": "amazon",
+    "catalogRef": { "platform": "amazon", "reportId": "exec" },
+    "title": "Account KPIs",
+    "question": "How is the account performing this period versus last period and plan?",
+    "representation": "kpiStrip",
+    "controls": {
+      "dateRange": { "preset": "30d" },
+      "period": "D",
+      "compare": true
+    },
+    "synced": "2m ago",
+    "pinned": true,
+    "csvDownload": true,
+    "data": {
+      "kind": "kpiStrip",
+      "items": [
+        {
+          "key": "spend",
+          "label": "Spend",
+          "value": "₹23.7 L",
+          "delta": 9.4,
+          "target": -3.8,
+          "spark": [72100, 70400, 71900, 74200, 73100, 75800, 77400],
+          "compare": [66200, 65100, 66800, 67400, 66900, 68200, 69100]
+        },
+        {
+          "key": "sales",
+          "label": "Sales",
+          "value": "₹90.6 L",
+          "delta": 9.6,
+          "target": 7.5,
+          "spark": [301000, 296000, 305000, 312000, 309000, 318000, 324000]
+        },
+        { "key": "roas", "label": "ROAS", "value": "3.8×", "delta": 0.2, "target": -9.0, "spark": [4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2] },
+        { "key": "acos", "label": "ACOS", "value": "26.2%", "delta": -0.2, "target": 4.6, "invert": true, "spark": [23.9, 23.8, 23.6, 23.8, 23.7, 23.8, 23.9] }
+      ]
+    }
+  },
+  {
+    "id": "trend",
+    "platform": "amazon",
+    "catalogRef": { "platform": "amazon", "reportId": "time" },
+    "title": "Spend over time",
+    "question": "How is spend changing day on day?",
+    "representation": "trendLine",
+    "controls": {
+      "dateRange": { "preset": "7d" },
+      "period": "D",
+      "compare": true,
+      "metricSelector": {
+        "value": "spend",
+        "options": [
+          { "value": "spend", "label": "Spend", "unit": "inr" },
+          { "value": "sales", "label": "Sales", "unit": "inr" },
+          { "value": "roas", "label": "ROAS", "unit": "x" }
+        ]
+      }
+    },
+    "synced": "2m ago",
+    "pinned": true,
+    "data": {
+      "kind": "trendLine",
+      "labels": ["24 Aug", "25 Aug", "26 Aug", "27 Aug", "28 Aug", "29 Aug", "30 Aug"],
+      "series": [
+        { "id": "spend", "label": "Spend", "data": [72100, 70400, 71900, 74200, 73100, 75800, 77400] },
+        { "id": "prev", "label": "Previous period", "data": [66200, 65100, 66800, 67400, 66900, 68200, 69100], "dashed": true }
+      ],
+      "unit": "inr",
+      "height": 240
+    }
+  },
+  {
+    "id": "rank",
+    "platform": "amazon",
+    "catalogRef": { "platform": "amazon", "reportId": "campaign" },
+    "title": "Top campaigns by ROAS",
+    "question": "Which campaigns lead on ROAS?",
+    "representation": "barsHorizontal",
+    "controls": {
+      "dateRange": { "preset": "30d" },
+      "metricSelector": {
+        "value": "roas",
+        "options": [
+          { "value": "roas", "label": "ROAS", "unit": "x" },
+          { "value": "sales", "label": "Sales", "unit": "inr" },
+          { "value": "spend", "label": "Spend", "unit": "inr" },
+          { "value": "acos", "label": "ACOS", "unit": "pct", "invert": true }
+        ]
+      }
+    },
+    "synced": "2m ago",
+    "pinned": true,
+    "data": {
+      "kind": "barsHorizontal",
+      "items": [
+        { "id": "c0", "label": "Diwali Sale · SP", "value": 5.5 },
+        { "id": "c1", "label": "Brand Defense · SB", "value": 5.0 },
+        { "id": "c2", "label": "Kitchen Bestsellers · SP", "value": 4.2 },
+        { "id": "c3", "label": "Retargeting · SD", "value": 4.1 }
+      ],
+      "unit": "x"
+    }
+  },
+  {
+    "id": "grid",
+    "platform": "amazon",
+    "catalogRef": { "platform": "amazon", "reportId": "placement" },
+    "title": "Campaign × placement · ROAS",
+    "question": "Where on Amazon are ads performing best?",
+    "representation": "heatmap",
+    "controls": {
+      "dateRange": { "preset": "30d" },
+      "metricSelector": {
+        "value": "roas",
+        "options": [
+          { "value": "roas", "label": "ROAS", "unit": "x" },
+          { "value": "acos", "label": "ACOS", "unit": "pct", "invert": true }
+        ]
+      }
+    },
+    "synced": "2m ago",
+    "pinned": true,
+    "data": {
+      "kind": "heatmap",
+      "rows": ["Diwali Sale · SP", "Brand Defense · SB", "Kitchen Bestsellers · SP"],
+      "cols": ["Top of search", "Rest of search", "Product pages"],
+      "values": [
+        [6.4, 5.1, 4.2],
+        [5.9, 4.7, 3.8],
+        [5.0, 4.1, null]
+      ],
+      "invert": false,
+      "unit": "x"
+    }
+  }
+]

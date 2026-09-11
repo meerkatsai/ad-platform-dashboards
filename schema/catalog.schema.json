@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meerkats.ai/schemas/ad-dashboards/catalog.schema.json",
+  "title": "Report catalog",
+  "description": "Validates src/data/catalog.json — the per-platform catalog of reports. Each report row is the source of truth for a card's title (Title Case), business question (verbatim, sentence case with a question mark), native metric set, recommended representation and optional grid axes.",
+  "type": "object",
+  "properties": {
+    "amazon": { "$ref": "#/$defs/platform" },
+    "flipkart": { "$ref": "#/$defs/platform" },
+    "google": { "$ref": "#/$defs/platform" },
+    "meta": { "$ref": "#/$defs/platform" },
+    "legend": {
+      "type": "object",
+      "description": "Method notes: what each representation is for, the grid principle, metric normalization rule, and the no-alerts rule.",
+      "properties": {
+        "representations": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "gridPrinciple": { "type": "string" },
+        "metricNormalization": { "type": "string" },
+        "noAlerts": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "required": ["amazon", "flipkart", "google", "meta"],
+  "additionalProperties": false,
+  "$defs": {
+    "platform": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Platform display name, e.g. \"Amazon Ads\"." },
+        "currencyNote": { "type": "string" },
+        "reports": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/report" }
+        }
+      },
+      "required": ["name", "reports"],
+      "additionalProperties": false
+    },
+    "report": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]*$",
+          "description": "Stable report key, unique within its platform."
+        },
+        "title": { "type": "string", "description": "Card title, Title Case, taken verbatim from the catalog." },
+        "level": { "type": "string", "description": "Reporting grain, e.g. \"Campaign\", \"Day / week / month\"." },
+        "question": {
+          "type": "string",
+          "description": "The business question. Rendered as the card subtitle, sentence case, ends with a question mark."
+        },
+        "metrics": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" },
+          "description": "Native platform metric names. Never renamed for cross-platform parity."
+        },
+        "representation": {
+          "type": "string",
+          "description": "Prose description of the recommended representation(s). Each representation listed becomes its OWN card — never combined."
+        },
+        "grid": {
+          "description": "true = a separate Heatmap card is warranted; \"optional\" = at the builder's discretion; false = no grid.",
+          "oneOf": [{ "type": "boolean" }, { "const": "optional" }]
+        },
+        "gridAxes": {
+          "type": "string",
+          "description": "When grid is true/optional: what the heatmap rows, columns and cells are."
+        }
+      },
+      "required": ["id", "title", "level", "question", "metrics", "representation", "grid"],
+      "additionalProperties": false
+    }
+  }
+}
